@@ -1,0 +1,774 @@
+@prefix ex:   <http://example.org/nord#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix geo:  <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+
+# DONNÉES ILLUSTRATIVES - à remplacer par les données collectées sur le terrain.
+# Fichier généré par scripts/build_data.py (peut aussi être édité à la main).
+
+ex:Nord a ex:Region ; rdfs:label "Nord"@fr .
+
+ex:Garoua a ex:Commune ; rdfs:label "Garoua"@fr ; ex:partieDe ex:Nord ;
+    geo:lat "9.3014"^^xsd:decimal ; geo:long "13.3977"^^xsd:decimal .
+ex:Guider a ex:Commune ; rdfs:label "Guider"@fr ; ex:partieDe ex:Nord ;
+    geo:lat "9.9333"^^xsd:decimal ; geo:long "13.95"^^xsd:decimal .
+ex:Lagdo a ex:Commune ; rdfs:label "Lagdo"@fr ; ex:partieDe ex:Nord ;
+    geo:lat "9.05"^^xsd:decimal ; geo:long "13.7167"^^xsd:decimal .
+ex:Pitoa a ex:Commune ; rdfs:label "Pitoa"@fr ; ex:partieDe ex:Nord ;
+    geo:lat "9.3833"^^xsd:decimal ; geo:long "13.5333"^^xsd:decimal .
+
+ex:MarcheArtisanalGaroua a ex:SitePatrimonial ; rdfs:label "Marché artisanal de Garoua"@fr ; ex:situeDans ex:Garoua ;
+    geo:lat "9.305"^^xsd:decimal ; geo:long "13.395"^^xsd:decimal ;
+    ex:anneeClassement "1998"^^xsd:gYear ;
+    ex:proposeVisite ex:VisiteMarche .
+ex:PontSurLaBenoue a ex:SitePatrimonial ; rdfs:label "Pont sur la Bénoué"@fr ; ex:situeDans ex:Garoua ;
+    geo:lat "9.309"^^xsd:decimal ; geo:long "13.406"^^xsd:decimal .
+
+ex:VisiteMarche a ex:VisiteGuidee ; ex:langueVisite ex:Francais , ex:Fulfulde .
+ex:Francais a ex:Langue ; rdfs:label "français"@fr .
+ex:Fulfulde a ex:Langue ; rdfs:label "fulfulde"@fr .
+
+ex:HotelNordSA a ex:Societe ; rdfs:label "HôtelNord SA"@fr .
+ex:CooperativeFalaise a ex:Cooperative ; rdfs:label "Coopérative Falaise"@fr .
+ex:FleuveHotellerie a ex:Societe ; rdfs:label "Fleuve Hôtellerie SARL"@fr .
+ex:SahelGroupe a ex:Societe ; rdfs:label "Sahel Groupe SA"@fr .
+ex:PanoramaSARL a ex:Societe ; rdfs:label "Panorama SARL"@fr .
+ex:EtoileNordSARL a ex:Societe ; rdfs:label "Étoile du Nord SARL"@fr .
+ex:CoopMarche a ex:Cooperative ; rdfs:label "Coopérative des artisans"@fr .
+ex:CoopKarite a ex:Cooperative ; rdfs:label "Coopérative Karité"@fr .
+ex:AmbassadeurHoldings a ex:Societe ; rdfs:label "Ambassadeur Holdings SA"@fr .
+ex:VueFleuveSARL a ex:Societe ; rdfs:label "Vue du Fleuve SARL"@fr .
+ex:CoopAcacia a ex:Cooperative ; rdfs:label "Coopérative Acacia"@fr .
+ex:PalmiersSARL a ex:Societe ; rdfs:label "Palmiers SARL"@fr .
+ex:GuiderHotelSARL a ex:Societe ; rdfs:label "Guider Hôtel SARL"@fr .
+ex:CoopGuider a ex:Cooperative ; rdfs:label "Coopérative de Guider"@fr .
+ex:LacLagdoSARL a ex:Societe ; rdfs:label "Lac de Lagdo SARL"@fr .
+ex:CoopPitoa a ex:Cooperative ; rdfs:label "Coopérative de Pitoa"@fr .
+
+ex:HotelLeBenoue a ex:Hotel ;
+    rdfs:label "Hôtel Le Bénoué"@fr ;
+    ex:nombreEtoiles "4"^^xsd:integer ;
+    ex:nombreChambres "48"^^xsd:integer ;
+    ex:anneeOuverture "2015"^^xsd:gYear ;
+    ex:situeDans ex:Garoua ;
+    ex:exploitePar ex:HotelNordSA ;
+    geo:lat "9.314"^^xsd:decimal ; geo:long "13.399"^^xsd:decimal ;
+    ex:accessiblePMR "true"^^xsd:boolean ;
+    ex:proposeEquipement ex:Restaurant , ex:Wifi , ex:Climatisation , ex:Piscine , ex:Parking , ex:PetitDejeuner ;
+    ex:accepteMode ex:MobileMoney , ex:Especes ;
+    ex:convientA ex:VoyageurCouple ;
+    ex:aOffre ex:OffreHotelLeBenoue01 , ex:OffreHotelLeBenoue02 , ex:OffreHotelLeBenoue03 , ex:OffreHotelLeBenoue04 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreHotelLeBenoue01 a ex:Offre ; ex:typeChambre ex:ChambreSimple ;
+    rdfs:label "Chambre simple - Hôtel Le Bénoué"@fr ;
+    ex:tarifNuit "38000"^^xsd:decimal ; ex:capacite "1"^^xsd:integer .
+ex:OffreHotelLeBenoue02 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Hôtel Le Bénoué"@fr ;
+    ex:tarifNuit "45000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+ex:OffreHotelLeBenoue03 a ex:Offre ; ex:typeChambre ex:ChambreFamiliale ;
+    rdfs:label "Chambre familiale - Hôtel Le Bénoué"@fr ;
+    ex:tarifNuit "70000"^^xsd:decimal ; ex:capacite "4"^^xsd:integer .
+ex:OffreHotelLeBenoue04 a ex:Offre ; ex:typeChambre ex:Suite ;
+    rdfs:label "Suite - Hôtel Le Bénoué"@fr ;
+    ex:tarifNuit "95000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+
+ex:MediaHotelLeBenoue a ex:Media ; ex:illustre ex:HotelLeBenoue ;
+    ex:urlMedia "/static/img/placeholder-hotel.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Hôtel Le Bénoué"@fr .
+
+ex:avis001 a ex:Avis ; rdfs:label "Avis 001"@fr ;
+    ex:concerne ex:HotelLeBenoue ; ex:redigePar ex:VisiteurAicha ;
+    ex:dateAvis "2025-11-12"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "5"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Accueil chaleureux."@fr .
+ex:avis002 a ex:Avis ; rdfs:label "Avis 002"@fr ;
+    ex:concerne ex:HotelLeBenoue ; ex:redigePar ex:VisiteurHamadou ;
+    ex:dateAvis "2026-01-20"^^xsd:date ; ex:note "5"^^xsd:integer ;
+    ex:noteProprete "5"^^xsd:integer ; ex:noteAccueil "5"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Séjour d'affaires parfait, wifi stable."@fr .
+ex:avis003 a ex:Avis ; rdfs:label "Avis 003"@fr ;
+    ex:concerne ex:HotelLeBenoue ; ex:redigePar ex:VisiteurClarisse ;
+    ex:dateAvis "2026-03-08"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Chambre confortable, restaurant correct."@fr .
+ex:avis004 a ex:Avis ; rdfs:label "Avis 004"@fr ;
+    ex:concerne ex:HotelLeBenoue ; ex:redigePar ex:VisiteurYaya ;
+    ex:dateAvis "2026-05-02"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "5"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Très propre, un peu cher."@fr .
+
+ex:AubergeDeLaFalaise a ex:Auberge ;
+    rdfs:label "Auberge de la Falaise"@fr ;
+    ex:nombreEtoiles "2"^^xsd:integer ;
+    ex:nombreChambres "12"^^xsd:integer ;
+    ex:situeDans ex:Garoua ;
+    ex:exploitePar ex:CooperativeFalaise ;
+    geo:lat "9.3"^^xsd:decimal ; geo:long "13.399"^^xsd:decimal ;
+    ex:accessiblePMR "false"^^xsd:boolean ;
+    ex:proposeEquipement ex:Wifi ;
+    ex:accepteMode ex:MobileMoney , ex:Especes ;
+    ex:convientA ex:VoyageurBudget ;
+    ex:aOffre ex:OffreAubergeDeLaFalaise01 , ex:OffreAubergeDeLaFalaise02 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreAubergeDeLaFalaise01 a ex:Offre ; ex:typeChambre ex:ChambreSimple ;
+    rdfs:label "Chambre simple - Auberge de la Falaise"@fr ;
+    ex:tarifNuit "12000"^^xsd:decimal ; ex:capacite "1"^^xsd:integer .
+ex:OffreAubergeDeLaFalaise02 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Auberge de la Falaise"@fr ;
+    ex:tarifNuit "18000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+
+ex:MediaAubergeDeLaFalaise a ex:Media ; ex:illustre ex:AubergeDeLaFalaise ;
+    ex:urlMedia "/static/img/placeholder-auberge.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Auberge de la Falaise"@fr .
+
+ex:avis005 a ex:Avis ; rdfs:label "Avis 005"@fr ;
+    ex:concerne ex:AubergeDeLaFalaise ; ex:redigePar ex:VisiteurMoussa ;
+    ex:dateAvis "2026-02-14"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "5"^^xsd:integer ;
+    ex:noteRapportQualitePrix "5"^^xsd:integer ;
+    ex:commentaire "Simple et bien tenue, super prix."@fr .
+ex:avis006 a ex:Avis ; rdfs:label "Avis 006"@fr ;
+    ex:concerne ex:AubergeDeLaFalaise ; ex:redigePar ex:VisiteurFadimatou ;
+    ex:dateAvis "2026-04-10"^^xsd:date ; ex:note "3"^^xsd:integer ;
+    ex:noteProprete "3"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Correct pour une nuit."@fr .
+
+ex:ResidenceDuFleuve a ex:Hotel ;
+    rdfs:label "Résidence du Fleuve"@fr ;
+    ex:nombreEtoiles "3"^^xsd:integer ;
+    ex:nombreChambres "30"^^xsd:integer ;
+    ex:anneeOuverture "2012"^^xsd:gYear ;
+    ex:situeDans ex:Garoua ;
+    ex:exploitePar ex:FleuveHotellerie ;
+    geo:lat "9.32"^^xsd:decimal ; geo:long "13.41"^^xsd:decimal ;
+    ex:accessiblePMR "true"^^xsd:boolean ;
+    ex:proposeEquipement ex:Restaurant , ex:Wifi , ex:Climatisation , ex:Bar ;
+    ex:accepteMode ex:MobileMoney , ex:CarteBancaire ;
+    ex:convientA ex:VoyageurCouple ;
+    ex:aOffre ex:OffreResidenceDuFleuve01 , ex:OffreResidenceDuFleuve02 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreResidenceDuFleuve01 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Résidence du Fleuve"@fr ;
+    ex:tarifNuit "62000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+ex:OffreResidenceDuFleuve02 a ex:Offre ; ex:typeChambre ex:Suite ;
+    rdfs:label "Suite - Résidence du Fleuve"@fr ;
+    ex:tarifNuit "110000"^^xsd:decimal ; ex:capacite "3"^^xsd:integer .
+
+ex:MediaResidenceDuFleuve a ex:Media ; ex:illustre ex:ResidenceDuFleuve ;
+    ex:urlMedia "/static/img/placeholder-hotel.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Résidence du Fleuve"@fr .
+
+ex:avis007 a ex:Avis ; rdfs:label "Avis 007"@fr ;
+    ex:concerne ex:ResidenceDuFleuve ; ex:redigePar ex:VisiteurIbrahim ;
+    ex:dateAvis "2026-01-05"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Belle vue sur le fleuve."@fr .
+ex:avis008 a ex:Avis ; rdfs:label "Avis 008"@fr ;
+    ex:concerne ex:ResidenceDuFleuve ; ex:redigePar ex:VisiteurSalamatou ;
+    ex:dateAvis "2026-02-27"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "3"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Calme, personnel discret."@fr .
+ex:avis009 a ex:Avis ; rdfs:label "Avis 009"@fr ;
+    ex:concerne ex:ResidenceDuFleuve ; ex:redigePar ex:VisiteurJoël ;
+    ex:dateAvis "2026-05-19"^^xsd:date ; ex:note "3"^^xsd:integer ;
+    ex:noteProprete "3"^^xsd:integer ; ex:noteAccueil "3"^^xsd:integer ;
+    ex:noteRapportQualitePrix "2"^^xsd:integer ;
+    ex:commentaire "Prix élevé pour le service."@fr .
+
+ex:HotelSahelPlaza a ex:Hotel ;
+    rdfs:label "Hôtel Sahel Plaza"@fr ;
+    ex:nombreEtoiles "3"^^xsd:integer ;
+    ex:nombreChambres "36"^^xsd:integer ;
+    ex:anneeOuverture "2018"^^xsd:gYear ;
+    ex:situeDans ex:Garoua ;
+    ex:exploitePar ex:SahelGroupe ;
+    geo:lat "9.308"^^xsd:decimal ; geo:long "13.39"^^xsd:decimal ;
+    ex:accessiblePMR "false"^^xsd:boolean ;
+    ex:proposeEquipement ex:Restaurant , ex:Wifi , ex:Climatisation , ex:Parking ;
+    ex:accepteMode ex:MobileMoney , ex:Especes , ex:CarteBancaire ;
+    ex:convientA ex:VoyageurFamille ;
+    ex:aOffre ex:OffreHotelSahelPlaza01 , ex:OffreHotelSahelPlaza02 , ex:OffreHotelSahelPlaza03 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreHotelSahelPlaza01 a ex:Offre ; ex:typeChambre ex:ChambreSimple ;
+    rdfs:label "Chambre simple - Hôtel Sahel Plaza"@fr ;
+    ex:tarifNuit "30000"^^xsd:decimal ; ex:capacite "1"^^xsd:integer .
+ex:OffreHotelSahelPlaza02 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Hôtel Sahel Plaza"@fr ;
+    ex:tarifNuit "42000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+ex:OffreHotelSahelPlaza03 a ex:Offre ; ex:typeChambre ex:ChambreFamiliale ;
+    rdfs:label "Chambre familiale - Hôtel Sahel Plaza"@fr ;
+    ex:tarifNuit "65000"^^xsd:decimal ; ex:capacite "4"^^xsd:integer .
+
+ex:MediaHotelSahelPlaza a ex:Media ; ex:illustre ex:HotelSahelPlaza ;
+    ex:urlMedia "/static/img/placeholder-hotel.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Hôtel Sahel Plaza"@fr .
+
+ex:avis010 a ex:Avis ; rdfs:label "Avis 010"@fr ;
+    ex:concerne ex:HotelSahelPlaza ; ex:redigePar ex:VisiteurAbdou ;
+    ex:dateAvis "2025-12-02"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Bon rapport qualité-prix."@fr .
+ex:avis011 a ex:Avis ; rdfs:label "Avis 011"@fr ;
+    ex:concerne ex:HotelSahelPlaza ; ex:redigePar ex:VisiteurMariam ;
+    ex:dateAvis "2026-02-11"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "5"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Parfait pour une famille."@fr .
+ex:avis012 a ex:Avis ; rdfs:label "Avis 012"@fr ;
+    ex:concerne ex:HotelSahelPlaza ; ex:redigePar ex:VisiteurPaul ;
+    ex:dateAvis "2026-04-23"^^xsd:date ; ex:note "3"^^xsd:integer ;
+    ex:noteProprete "3"^^xsd:integer ; ex:noteAccueil "3"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Climatisation bruyante."@fr .
+
+ex:HotelPanoramaGaroua a ex:Hotel ;
+    rdfs:label "Hôtel Panorama"@fr ;
+    ex:nombreEtoiles "3"^^xsd:integer ;
+    ex:nombreChambres "24"^^xsd:integer ;
+    ex:anneeOuverture "2010"^^xsd:gYear ;
+    ex:situeDans ex:Garoua ;
+    ex:exploitePar ex:PanoramaSARL ;
+    geo:lat "9.295"^^xsd:decimal ; geo:long "13.405"^^xsd:decimal ;
+    ex:accessiblePMR "false"^^xsd:boolean ;
+    ex:proposeEquipement ex:Restaurant , ex:Climatisation , ex:Bar ;
+    ex:accepteMode ex:Especes , ex:MobileMoney ;
+    ex:convientA ex:VoyageurFamille , ex:VoyageurCouple ;
+    ex:aOffre ex:OffreHotelPanoramaGaroua01 , ex:OffreHotelPanoramaGaroua02 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreHotelPanoramaGaroua01 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Hôtel Panorama"@fr ;
+    ex:tarifNuit "35000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+ex:OffreHotelPanoramaGaroua02 a ex:Offre ; ex:typeChambre ex:ChambreFamiliale ;
+    rdfs:label "Chambre familiale - Hôtel Panorama"@fr ;
+    ex:tarifNuit "55000"^^xsd:decimal ; ex:capacite "4"^^xsd:integer .
+
+ex:MediaHotelPanoramaGaroua a ex:Media ; ex:illustre ex:HotelPanoramaGaroua ;
+    ex:urlMedia "/static/img/placeholder-hotel.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Hôtel Panorama"@fr .
+
+ex:avis013 a ex:Avis ; rdfs:label "Avis 013"@fr ;
+    ex:concerne ex:HotelPanoramaGaroua ; ex:redigePar ex:VisiteurAissatou ;
+    ex:dateAvis "2025-10-30"^^xsd:date ; ex:note "3"^^xsd:integer ;
+    ex:noteProprete "3"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Ambiance conviviale."@fr .
+ex:avis014 a ex:Avis ; rdfs:label "Avis 014"@fr ;
+    ex:concerne ex:HotelPanoramaGaroua ; ex:redigePar ex:VisiteurBoubakari ;
+    ex:dateAvis "2026-03-15"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Bon restaurant."@fr .
+
+ex:ResidenceEtoileDuNord a ex:Hotel ;
+    rdfs:label "Résidence Étoile du Nord"@fr ;
+    ex:nombreEtoiles "2"^^xsd:integer ;
+    ex:nombreChambres "20"^^xsd:integer ;
+    ex:anneeOuverture "2016"^^xsd:gYear ;
+    ex:situeDans ex:Garoua ;
+    ex:exploitePar ex:EtoileNordSARL ;
+    geo:lat "9.31"^^xsd:decimal ; geo:long "13.385"^^xsd:decimal ;
+    ex:accessiblePMR "false"^^xsd:boolean ;
+    ex:proposeEquipement ex:Wifi , ex:Climatisation ;
+    ex:accepteMode ex:MobileMoney , ex:Especes ;
+    ex:convientA ex:VoyageurBudget ;
+    ex:aOffre ex:OffreResidenceEtoileDuNord01 , ex:OffreResidenceEtoileDuNord02 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreResidenceEtoileDuNord01 a ex:Offre ; ex:typeChambre ex:ChambreSimple ;
+    rdfs:label "Chambre simple - Résidence Étoile du Nord"@fr ;
+    ex:tarifNuit "15000"^^xsd:decimal ; ex:capacite "1"^^xsd:integer .
+ex:OffreResidenceEtoileDuNord02 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Résidence Étoile du Nord"@fr ;
+    ex:tarifNuit "22000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+
+ex:MediaResidenceEtoileDuNord a ex:Media ; ex:illustre ex:ResidenceEtoileDuNord ;
+    ex:urlMedia "/static/img/placeholder-hotel.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Résidence Étoile du Nord"@fr .
+
+ex:avis015 a ex:Avis ; rdfs:label "Avis 015"@fr ;
+    ex:concerne ex:ResidenceEtoileDuNord ; ex:redigePar ex:VisiteurNafissatou ;
+    ex:dateAvis "2026-01-18"^^xsd:date ; ex:note "3"^^xsd:integer ;
+    ex:noteProprete "3"^^xsd:integer ; ex:noteAccueil "3"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Propre, wifi lent."@fr .
+ex:avis016 a ex:Avis ; rdfs:label "Avis 016"@fr ;
+    ex:concerne ex:ResidenceEtoileDuNord ; ex:redigePar ex:VisiteurSamuel ;
+    ex:dateAvis "2026-03-29"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "5"^^xsd:integer ;
+    ex:commentaire "Très bon prix."@fr .
+ex:avis017 a ex:Avis ; rdfs:label "Avis 017"@fr ;
+    ex:concerne ex:ResidenceEtoileDuNord ; ex:redigePar ex:VisiteurRakia ;
+    ex:dateAvis "2026-05-30"^^xsd:date ; ex:note "3"^^xsd:integer ;
+    ex:noteProprete "3"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Correct."@fr .
+
+ex:AubergeDuMarche a ex:Auberge ;
+    rdfs:label "Auberge du Marché"@fr ;
+    ex:nombreEtoiles "2"^^xsd:integer ;
+    ex:nombreChambres "10"^^xsd:integer ;
+    ex:situeDans ex:Garoua ;
+    ex:exploitePar ex:CoopMarche ;
+    geo:lat "9.3045"^^xsd:decimal ; geo:long "13.3955"^^xsd:decimal ;
+    ex:accessiblePMR "false"^^xsd:boolean ;
+    ex:proposeEquipement ex:PetitDejeuner , ex:Wifi ;
+    ex:accepteMode ex:Especes , ex:MobileMoney ;
+    ex:convientA ex:VoyageurBudget ;
+    ex:aOffre ex:OffreAubergeDuMarche01 , ex:OffreAubergeDuMarche02 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreAubergeDuMarche01 a ex:Offre ; ex:typeChambre ex:ChambreSimple ;
+    rdfs:label "Chambre simple - Auberge du Marché"@fr ;
+    ex:tarifNuit "9000"^^xsd:decimal ; ex:capacite "1"^^xsd:integer .
+ex:OffreAubergeDuMarche02 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Auberge du Marché"@fr ;
+    ex:tarifNuit "14000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+
+ex:MediaAubergeDuMarche a ex:Media ; ex:illustre ex:AubergeDuMarche ;
+    ex:urlMedia "/static/img/placeholder-auberge.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Auberge du Marché"@fr .
+
+ex:avis018 a ex:Avis ; rdfs:label "Avis 018"@fr ;
+    ex:concerne ex:AubergeDuMarche ; ex:redigePar ex:VisiteurOumarou ;
+    ex:dateAvis "2026-02-03"^^xsd:date ; ex:note "3"^^xsd:integer ;
+    ex:noteProprete "3"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Bien placée près du marché."@fr .
+ex:avis019 a ex:Avis ; rdfs:label "Avis 019"@fr ;
+    ex:concerne ex:AubergeDuMarche ; ex:redigePar ex:VisiteurHadjara ;
+    ex:dateAvis "2026-04-17"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "5"^^xsd:integer ;
+    ex:noteRapportQualitePrix "5"^^xsd:integer ;
+    ex:commentaire "Accueil très aimable."@fr .
+
+ex:AubergeKarite a ex:Auberge ;
+    rdfs:label "Auberge Karité"@fr ;
+    ex:nombreEtoiles "1"^^xsd:integer ;
+    ex:nombreChambres "8"^^xsd:integer ;
+    ex:situeDans ex:Garoua ;
+    ex:exploitePar ex:CoopKarite ;
+    geo:lat "9.29"^^xsd:decimal ; geo:long "13.38"^^xsd:decimal ;
+    ex:accessiblePMR "false"^^xsd:boolean ;
+    ex:accepteMode ex:Especes ;
+    ex:convientA ex:VoyageurBudget ;
+    ex:aOffre ex:OffreAubergeKarite01 , ex:OffreAubergeKarite02 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreAubergeKarite01 a ex:Offre ; ex:typeChambre ex:ChambreSimple ;
+    rdfs:label "Chambre simple - Auberge Karité"@fr ;
+    ex:tarifNuit "6000"^^xsd:decimal ; ex:capacite "1"^^xsd:integer .
+ex:OffreAubergeKarite02 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Auberge Karité"@fr ;
+    ex:tarifNuit "9000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+
+ex:MediaAubergeKarite a ex:Media ; ex:illustre ex:AubergeKarite ;
+    ex:urlMedia "/static/img/placeholder-auberge.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Auberge Karité"@fr .
+
+ex:avis020 a ex:Avis ; rdfs:label "Avis 020"@fr ;
+    ex:concerne ex:AubergeKarite ; ex:redigePar ex:VisiteurDaouda ;
+    ex:dateAvis "2026-01-26"^^xsd:date ; ex:note "2"^^xsd:integer ;
+    ex:noteProprete "2"^^xsd:integer ; ex:noteAccueil "3"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Très basique."@fr .
+ex:avis021 a ex:Avis ; rdfs:label "Avis 021"@fr ;
+    ex:concerne ex:AubergeKarite ; ex:redigePar ex:VisiteurEsther ;
+    ex:dateAvis "2026-03-03"^^xsd:date ; ex:note "3"^^xsd:integer ;
+    ex:noteProprete "2"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Prix bas, accueil sympathique."@fr .
+
+ex:HotelAmbassadeurGaroua a ex:Hotel ;
+    rdfs:label "Hôtel Ambassadeur"@fr ;
+    ex:nombreEtoiles "4"^^xsd:integer ;
+    ex:nombreChambres "60"^^xsd:integer ;
+    ex:anneeOuverture "2019"^^xsd:gYear ;
+    ex:situeDans ex:Garoua ;
+    ex:exploitePar ex:AmbassadeurHoldings ;
+    geo:lat "9.317"^^xsd:decimal ; geo:long "13.393"^^xsd:decimal ;
+    ex:accessiblePMR "true"^^xsd:boolean ;
+    ex:proposeEquipement ex:Restaurant , ex:Wifi , ex:Climatisation , ex:Piscine , ex:Parking , ex:Bar , ex:Groupe ;
+    ex:accepteMode ex:MobileMoney , ex:CarteBancaire , ex:Especes ;
+    ex:convientA ex:VoyageurCouple ;
+    ex:aOffre ex:OffreHotelAmbassadeurGaroua01 , ex:OffreHotelAmbassadeurGaroua02 , ex:OffreHotelAmbassadeurGaroua03 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreHotelAmbassadeurGaroua01 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Hôtel Ambassadeur"@fr ;
+    ex:tarifNuit "75000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+ex:OffreHotelAmbassadeurGaroua02 a ex:Offre ; ex:typeChambre ex:Suite ;
+    rdfs:label "Suite - Hôtel Ambassadeur"@fr ;
+    ex:tarifNuit "140000"^^xsd:decimal ; ex:capacite "3"^^xsd:integer .
+ex:OffreHotelAmbassadeurGaroua03 a ex:Offre ; ex:typeChambre ex:ChambreFamiliale ;
+    rdfs:label "Chambre familiale - Hôtel Ambassadeur"@fr ;
+    ex:tarifNuit "110000"^^xsd:decimal ; ex:capacite "4"^^xsd:integer .
+
+ex:MediaHotelAmbassadeurGaroua a ex:Media ; ex:illustre ex:HotelAmbassadeurGaroua ;
+    ex:urlMedia "/static/img/placeholder-hotel.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Hôtel Ambassadeur"@fr .
+
+ex:avis022 a ex:Avis ; rdfs:label "Avis 022"@fr ;
+    ex:concerne ex:HotelAmbassadeurGaroua ; ex:redigePar ex:VisiteurAlioum ;
+    ex:dateAvis "2025-12-21"^^xsd:date ; ex:note "5"^^xsd:integer ;
+    ex:noteProprete "5"^^xsd:integer ; ex:noteAccueil "5"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Excellent établissement."@fr .
+ex:avis023 a ex:Avis ; rdfs:label "Avis 023"@fr ;
+    ex:concerne ex:HotelAmbassadeurGaroua ; ex:redigePar ex:VisiteurDanielle ;
+    ex:dateAvis "2026-02-09"^^xsd:date ; ex:note "5"^^xsd:integer ;
+    ex:noteProprete "5"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Piscine et service de qualité."@fr .
+ex:avis024 a ex:Avis ; rdfs:label "Avis 024"@fr ;
+    ex:concerne ex:HotelAmbassadeurGaroua ; ex:redigePar ex:VisiteurMahamat ;
+    ex:dateAvis "2026-04-04"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Très bien, mais cher."@fr .
+ex:avis025 a ex:Avis ; rdfs:label "Avis 025"@fr ;
+    ex:concerne ex:HotelAmbassadeurGaroua ; ex:redigePar ex:VisiteurZenabou ;
+    ex:dateAvis "2026-06-12"^^xsd:date ; ex:note "5"^^xsd:integer ;
+    ex:noteProprete "5"^^xsd:integer ; ex:noteAccueil "5"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Notre meilleur séjour."@fr .
+
+ex:HotelLaBenoueVue a ex:Hotel ;
+    rdfs:label "Hôtel La Vue du Fleuve"@fr ;
+    ex:nombreEtoiles "3"^^xsd:integer ;
+    ex:nombreChambres "28"^^xsd:integer ;
+    ex:anneeOuverture "2014"^^xsd:gYear ;
+    ex:situeDans ex:Garoua ;
+    ex:exploitePar ex:VueFleuveSARL ;
+    geo:lat "9.323"^^xsd:decimal ; geo:long "13.402"^^xsd:decimal ;
+    ex:accessiblePMR "false"^^xsd:boolean ;
+    ex:proposeEquipement ex:Restaurant , ex:Wifi , ex:PetitDejeuner , ex:Parking ;
+    ex:accepteMode ex:MobileMoney , ex:Especes ;
+    ex:convientA ex:VoyageurFamille ;
+    ex:aOffre ex:OffreHotelLaBenoueVue01 , ex:OffreHotelLaBenoueVue02 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreHotelLaBenoueVue01 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Hôtel La Vue du Fleuve"@fr ;
+    ex:tarifNuit "40000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+ex:OffreHotelLaBenoueVue02 a ex:Offre ; ex:typeChambre ex:ChambreFamiliale ;
+    rdfs:label "Chambre familiale - Hôtel La Vue du Fleuve"@fr ;
+    ex:tarifNuit "60000"^^xsd:decimal ; ex:capacite "4"^^xsd:integer .
+
+ex:MediaHotelLaBenoueVue a ex:Media ; ex:illustre ex:HotelLaBenoueVue ;
+    ex:urlMedia "/static/img/placeholder-hotel.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Hôtel La Vue du Fleuve"@fr .
+
+ex:avis026 a ex:Avis ; rdfs:label "Avis 026"@fr ;
+    ex:concerne ex:HotelLaBenoueVue ; ex:redigePar ex:VisiteurHaman ;
+    ex:dateAvis "2026-01-30"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Bon petit-déjeuner, vue agréable."@fr .
+ex:avis027 a ex:Avis ; rdfs:label "Avis 027"@fr ;
+    ex:concerne ex:HotelLaBenoueVue ; ex:redigePar ex:VisiteurBernadette ;
+    ex:dateAvis "2026-03-22"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "5"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Personnel attentionné."@fr .
+ex:avis028 a ex:Avis ; rdfs:label "Avis 028"@fr ;
+    ex:concerne ex:HotelLaBenoueVue ; ex:redigePar ex:VisiteurIdrissou ;
+    ex:dateAvis "2026-05-14"^^xsd:date ; ex:note "3"^^xsd:integer ;
+    ex:noteProprete "3"^^xsd:integer ; ex:noteAccueil "3"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Wifi capricieux."@fr .
+
+ex:AubergeAcacia a ex:Auberge ;
+    rdfs:label "Auberge de l'Acacia"@fr ;
+    ex:nombreEtoiles "2"^^xsd:integer ;
+    ex:nombreChambres "14"^^xsd:integer ;
+    ex:situeDans ex:Garoua ;
+    ex:exploitePar ex:CoopAcacia ;
+    geo:lat "9.298"^^xsd:decimal ; geo:long "13.412"^^xsd:decimal ;
+    ex:accessiblePMR "false"^^xsd:boolean ;
+    ex:proposeEquipement ex:Wifi , ex:Climatisation ;
+    ex:accepteMode ex:MobileMoney , ex:Especes ;
+    ex:convientA ex:VoyageurBudget , ex:VoyageurCouple ;
+    ex:aOffre ex:OffreAubergeAcacia01 , ex:OffreAubergeAcacia02 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreAubergeAcacia01 a ex:Offre ; ex:typeChambre ex:ChambreSimple ;
+    rdfs:label "Chambre simple - Auberge de l'Acacia"@fr ;
+    ex:tarifNuit "11000"^^xsd:decimal ; ex:capacite "1"^^xsd:integer .
+ex:OffreAubergeAcacia02 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Auberge de l'Acacia"@fr ;
+    ex:tarifNuit "16000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+
+ex:MediaAubergeAcacia a ex:Media ; ex:illustre ex:AubergeAcacia ;
+    ex:urlMedia "/static/img/placeholder-auberge.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Auberge de l'Acacia"@fr .
+
+ex:avis029 a ex:Avis ; rdfs:label "Avis 029"@fr ;
+    ex:concerne ex:AubergeAcacia ; ex:redigePar ex:VisiteurPauline ;
+    ex:dateAvis "2026-02-19"^^xsd:date ; ex:note "3"^^xsd:integer ;
+    ex:noteProprete "3"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Tranquille."@fr .
+ex:avis030 a ex:Avis ; rdfs:label "Avis 030"@fr ;
+    ex:concerne ex:AubergeAcacia ; ex:redigePar ex:VisiteurSali ;
+    ex:dateAvis "2026-04-26"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "5"^^xsd:integer ;
+    ex:commentaire "Bon pour un couple à petit budget."@fr .
+
+ex:ResidenceLesPalmiers a ex:Hotel ;
+    rdfs:label "Résidence Les Palmiers"@fr ;
+    ex:nombreEtoiles "3"^^xsd:integer ;
+    ex:nombreChambres "22"^^xsd:integer ;
+    ex:anneeOuverture "2013"^^xsd:gYear ;
+    ex:situeDans ex:Garoua ;
+    ex:exploitePar ex:PalmiersSARL ;
+    geo:lat "9.326"^^xsd:decimal ; geo:long "13.388"^^xsd:decimal ;
+    ex:accessiblePMR "false"^^xsd:boolean ;
+    ex:proposeEquipement ex:Wifi , ex:Climatisation , ex:Restaurant ;
+    ex:accepteMode ex:MobileMoney ;
+    ex:convientA ex:VoyageurCouple ;
+    ex:aOffre ex:OffreResidenceLesPalmiers01 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreResidenceLesPalmiers01 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Résidence Les Palmiers"@fr ;
+    ex:tarifNuit "38000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+
+ex:MediaResidenceLesPalmiers a ex:Media ; ex:illustre ex:ResidenceLesPalmiers ;
+    ex:urlMedia "/static/img/placeholder-hotel.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Résidence Les Palmiers"@fr .
+
+ex:avis031 a ex:Avis ; rdfs:label "Avis 031"@fr ;
+    ex:concerne ex:ResidenceLesPalmiers ; ex:redigePar ex:VisiteurNgo ;
+    ex:dateAvis "2026-02-08"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Calme et confortable."@fr .
+ex:avis032 a ex:Avis ; rdfs:label "Avis 032"@fr ;
+    ex:concerne ex:ResidenceLesPalmiers ; ex:redigePar ex:VisiteurFanta ;
+    ex:dateAvis "2026-04-14"^^xsd:date ; ex:note "5"^^xsd:integer ;
+    ex:noteProprete "5"^^xsd:integer ; ex:noteAccueil "5"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Très agréable pour un week-end."@fr .
+ex:avis033 a ex:Avis ; rdfs:label "Avis 033"@fr ;
+    ex:concerne ex:ResidenceLesPalmiers ; ex:redigePar ex:VisiteurAdamou ;
+    ex:dateAvis "2026-06-01"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Bon séjour."@fr .
+
+ex:HotelGuiderCentre a ex:Hotel ;
+    rdfs:label "Hôtel de Guider Centre"@fr ;
+    ex:nombreEtoiles "2"^^xsd:integer ;
+    ex:nombreChambres "18"^^xsd:integer ;
+    ex:anneeOuverture "2011"^^xsd:gYear ;
+    ex:situeDans ex:Guider ;
+    ex:exploitePar ex:GuiderHotelSARL ;
+    geo:lat "9.934"^^xsd:decimal ; geo:long "13.949"^^xsd:decimal ;
+    ex:accessiblePMR "false"^^xsd:boolean ;
+    ex:proposeEquipement ex:Restaurant , ex:Climatisation ;
+    ex:accepteMode ex:Especes , ex:MobileMoney ;
+    ex:convientA ex:VoyageurFamille ;
+    ex:aOffre ex:OffreHotelGuiderCentre01 , ex:OffreHotelGuiderCentre02 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreHotelGuiderCentre01 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Hôtel de Guider Centre"@fr ;
+    ex:tarifNuit "20000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+ex:OffreHotelGuiderCentre02 a ex:Offre ; ex:typeChambre ex:ChambreFamiliale ;
+    rdfs:label "Chambre familiale - Hôtel de Guider Centre"@fr ;
+    ex:tarifNuit "32000"^^xsd:decimal ; ex:capacite "4"^^xsd:integer .
+
+ex:MediaHotelGuiderCentre a ex:Media ; ex:illustre ex:HotelGuiderCentre ;
+    ex:urlMedia "/static/img/placeholder-hotel.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Hôtel de Guider Centre"@fr .
+
+ex:avis034 a ex:Avis ; rdfs:label "Avis 034"@fr ;
+    ex:concerne ex:HotelGuiderCentre ; ex:redigePar ex:VisiteurKaigama ;
+    ex:dateAvis "2026-01-12"^^xsd:date ; ex:note "3"^^xsd:integer ;
+    ex:noteProprete "3"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Simple mais propre."@fr .
+ex:avis035 a ex:Avis ; rdfs:label "Avis 035"@fr ;
+    ex:concerne ex:HotelGuiderCentre ; ex:redigePar ex:VisiteurRose ;
+    ex:dateAvis "2026-03-27"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Restaurant familial agréable."@fr .
+
+ex:AubergeGuiderSahel a ex:Auberge ;
+    rdfs:label "Auberge Sahel de Guider"@fr ;
+    ex:nombreEtoiles "1"^^xsd:integer ;
+    ex:nombreChambres "9"^^xsd:integer ;
+    ex:situeDans ex:Guider ;
+    ex:exploitePar ex:CoopGuider ;
+    geo:lat "9.93"^^xsd:decimal ; geo:long "13.954"^^xsd:decimal ;
+    ex:accessiblePMR "false"^^xsd:boolean ;
+    ex:proposeEquipement ex:PetitDejeuner ;
+    ex:accepteMode ex:Especes ;
+    ex:convientA ex:VoyageurBudget ;
+    ex:aOffre ex:OffreAubergeGuiderSahel01 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreAubergeGuiderSahel01 a ex:Offre ; ex:typeChambre ex:ChambreSimple ;
+    rdfs:label "Chambre simple - Auberge Sahel de Guider"@fr ;
+    ex:tarifNuit "7000"^^xsd:decimal ; ex:capacite "1"^^xsd:integer .
+
+ex:MediaAubergeGuiderSahel a ex:Media ; ex:illustre ex:AubergeGuiderSahel ;
+    ex:urlMedia "/static/img/placeholder-auberge.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Auberge Sahel de Guider"@fr .
+
+ex:avis036 a ex:Avis ; rdfs:label "Avis 036"@fr ;
+    ex:concerne ex:AubergeGuiderSahel ; ex:redigePar ex:VisiteurBello ;
+    ex:dateAvis "2026-02-22"^^xsd:date ; ex:note "2"^^xsd:integer ;
+    ex:noteProprete "3"^^xsd:integer ; ex:noteAccueil "3"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Basique."@fr .
+
+ex:HotelLagdoLac a ex:Hotel ;
+    rdfs:label "Hôtel du Lac de Lagdo"@fr ;
+    ex:nombreEtoiles "3"^^xsd:integer ;
+    ex:nombreChambres "26"^^xsd:integer ;
+    ex:anneeOuverture "2017"^^xsd:gYear ;
+    ex:situeDans ex:Lagdo ;
+    ex:exploitePar ex:LacLagdoSARL ;
+    geo:lat "9.051"^^xsd:decimal ; geo:long "13.716"^^xsd:decimal ;
+    ex:accessiblePMR "false"^^xsd:boolean ;
+    ex:proposeEquipement ex:Restaurant , ex:Wifi , ex:Climatisation , ex:Piscine , ex:Bar ;
+    ex:accepteMode ex:MobileMoney , ex:Especes ;
+    ex:convientA ex:VoyageurCouple , ex:VoyageurFamille ;
+    ex:aOffre ex:OffreHotelLagdoLac01 , ex:OffreHotelLagdoLac02 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreHotelLagdoLac01 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Hôtel du Lac de Lagdo"@fr ;
+    ex:tarifNuit "36000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+ex:OffreHotelLagdoLac02 a ex:Offre ; ex:typeChambre ex:ChambreFamiliale ;
+    rdfs:label "Chambre familiale - Hôtel du Lac de Lagdo"@fr ;
+    ex:tarifNuit "52000"^^xsd:decimal ; ex:capacite "4"^^xsd:integer .
+
+ex:MediaHotelLagdoLac a ex:Media ; ex:illustre ex:HotelLagdoLac ;
+    ex:urlMedia "/static/img/placeholder-hotel.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Hôtel du Lac de Lagdo"@fr .
+
+ex:avis037 a ex:Avis ; rdfs:label "Avis 037"@fr ;
+    ex:concerne ex:HotelLagdoLac ; ex:redigePar ex:VisiteurCarine ;
+    ex:dateAvis "2026-01-09"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "3"^^xsd:integer ;
+    ex:commentaire "Vue sur le lac, très calme."@fr .
+ex:avis038 a ex:Avis ; rdfs:label "Avis 038"@fr ;
+    ex:concerne ex:HotelLagdoLac ; ex:redigePar ex:VisiteurGilbert ;
+    ex:dateAvis "2026-03-05"^^xsd:date ; ex:note "5"^^xsd:integer ;
+    ex:noteProprete "5"^^xsd:integer ; ex:noteAccueil "5"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Parfait pour se détendre."@fr .
+ex:avis039 a ex:Avis ; rdfs:label "Avis 039"@fr ;
+    ex:concerne ex:HotelLagdoLac ; ex:redigePar ex:VisiteurHawa ;
+    ex:dateAvis "2026-05-25"^^xsd:date ; ex:note "4"^^xsd:integer ;
+    ex:noteProprete "4"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Piscine agréable."@fr .
+
+ex:AubergePitoaRoute a ex:Auberge ;
+    rdfs:label "Auberge de la Route de Pitoa"@fr ;
+    ex:nombreEtoiles "2"^^xsd:integer ;
+    ex:nombreChambres "11"^^xsd:integer ;
+    ex:situeDans ex:Pitoa ;
+    ex:exploitePar ex:CoopPitoa ;
+    geo:lat "9.383"^^xsd:decimal ; geo:long "13.534"^^xsd:decimal ;
+    ex:accessiblePMR "false"^^xsd:boolean ;
+    ex:proposeEquipement ex:Wifi , ex:Restaurant ;
+    ex:accepteMode ex:Especes , ex:MobileMoney ;
+    ex:convientA ex:VoyageurBudget ;
+    ex:aOffre ex:OffreAubergePitoaRoute01 ;
+    dct:source "Données illustratives (à remplacer par la collecte terrain)"@fr ;
+    dct:modified "2026-10-01"^^xsd:date .
+
+ex:OffreAubergePitoaRoute01 a ex:Offre ; ex:typeChambre ex:ChambreDouble ;
+    rdfs:label "Chambre double - Auberge de la Route de Pitoa"@fr ;
+    ex:tarifNuit "13000"^^xsd:decimal ; ex:capacite "2"^^xsd:integer .
+
+ex:MediaAubergePitoaRoute a ex:Media ; ex:illustre ex:AubergePitoaRoute ;
+    ex:urlMedia "/static/img/placeholder-auberge.svg"^^xsd:anyURI ;
+    rdfs:label "Photo de Auberge de la Route de Pitoa"@fr .
+
+ex:avis040 a ex:Avis ; rdfs:label "Avis 040"@fr ;
+    ex:concerne ex:AubergePitoaRoute ; ex:redigePar ex:VisiteurTidjani ;
+    ex:dateAvis "2026-02-16"^^xsd:date ; ex:note "3"^^xsd:integer ;
+    ex:noteProprete "3"^^xsd:integer ; ex:noteAccueil "4"^^xsd:integer ;
+    ex:noteRapportQualitePrix "4"^^xsd:integer ;
+    ex:commentaire "Étape pratique sur la route."@fr .
+
+ex:VisiteurAbdou a ex:Visiteur ; rdfs:label "Abdou"@fr .
+ex:VisiteurAdamou a ex:Visiteur ; rdfs:label "Adamou"@fr .
+ex:VisiteurAicha a ex:Visiteur ; rdfs:label "Aicha"@fr .
+ex:VisiteurAissatou a ex:Visiteur ; rdfs:label "Aissatou"@fr .
+ex:VisiteurAlioum a ex:Visiteur ; rdfs:label "Alioum"@fr .
+ex:VisiteurBello a ex:Visiteur ; rdfs:label "Bello"@fr .
+ex:VisiteurBernadette a ex:Visiteur ; rdfs:label "Bernadette"@fr .
+ex:VisiteurBoubakari a ex:Visiteur ; rdfs:label "Boubakari"@fr .
+ex:VisiteurCarine a ex:Visiteur ; rdfs:label "Carine"@fr .
+ex:VisiteurClarisse a ex:Visiteur ; rdfs:label "Clarisse"@fr .
+ex:VisiteurDanielle a ex:Visiteur ; rdfs:label "Danielle"@fr .
+ex:VisiteurDaouda a ex:Visiteur ; rdfs:label "Daouda"@fr .
+ex:VisiteurEsther a ex:Visiteur ; rdfs:label "Esther"@fr .
+ex:VisiteurFadimatou a ex:Visiteur ; rdfs:label "Fadimatou"@fr .
+ex:VisiteurFanta a ex:Visiteur ; rdfs:label "Fanta"@fr .
+ex:VisiteurGilbert a ex:Visiteur ; rdfs:label "Gilbert"@fr .
+ex:VisiteurHadjara a ex:Visiteur ; rdfs:label "Hadjara"@fr .
+ex:VisiteurHamadou a ex:Visiteur ; rdfs:label "Hamadou"@fr .
+ex:VisiteurHaman a ex:Visiteur ; rdfs:label "Haman"@fr .
+ex:VisiteurHawa a ex:Visiteur ; rdfs:label "Hawa"@fr .
+ex:VisiteurIbrahim a ex:Visiteur ; rdfs:label "Ibrahim"@fr .
+ex:VisiteurIdrissou a ex:Visiteur ; rdfs:label "Idrissou"@fr .
+ex:VisiteurJoël a ex:Visiteur ; rdfs:label "Joël"@fr .
+ex:VisiteurKaigama a ex:Visiteur ; rdfs:label "Kaigama"@fr .
+ex:VisiteurMahamat a ex:Visiteur ; rdfs:label "Mahamat"@fr .
+ex:VisiteurMariam a ex:Visiteur ; rdfs:label "Mariam"@fr .
+ex:VisiteurMoussa a ex:Visiteur ; rdfs:label "Moussa"@fr .
+ex:VisiteurNafissatou a ex:Visiteur ; rdfs:label "Nafissatou"@fr .
+ex:VisiteurNgo a ex:Visiteur ; rdfs:label "Ngo"@fr .
+ex:VisiteurOumarou a ex:Visiteur ; rdfs:label "Oumarou"@fr .
+ex:VisiteurPaul a ex:Visiteur ; rdfs:label "Paul"@fr .
+ex:VisiteurPauline a ex:Visiteur ; rdfs:label "Pauline"@fr .
+ex:VisiteurRakia a ex:Visiteur ; rdfs:label "Rakia"@fr .
+ex:VisiteurRose a ex:Visiteur ; rdfs:label "Rose"@fr .
+ex:VisiteurSalamatou a ex:Visiteur ; rdfs:label "Salamatou"@fr .
+ex:VisiteurSali a ex:Visiteur ; rdfs:label "Sali"@fr .
+ex:VisiteurSamuel a ex:Visiteur ; rdfs:label "Samuel"@fr .
+ex:VisiteurTidjani a ex:Visiteur ; rdfs:label "Tidjani"@fr .
+ex:VisiteurYaya a ex:Visiteur ; rdfs:label "Yaya"@fr .
+ex:VisiteurZenabou a ex:Visiteur ; rdfs:label "Zenabou"@fr .

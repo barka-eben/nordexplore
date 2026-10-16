@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block titre %}{{ label }}{% endblock %}
+{% block contenu %}
+<h1>{{ label }}</h1>
+<p class="meta">{{ types|join(', ') }}</p>
+{% if liens.sortants %}<h2>Liens sortants</h2>
+<dl class="liens">{% for prop, cibles in liens.sortants.items() %}<dt>{{ prop }}</dt>
+  <dd>{% for c in cibles %}<a href="{{ lien(c.id) }}">{{ c.label }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>{% endfor %}</dl>{% endif %}
+{% if liens.entrants %}<h2>Liens entrants</h2>
+<dl class="liens">{% for prop, cibles in liens.entrants.items() %}<dt>{{ prop }}</dt>
+  <dd>{% for c in cibles %}<a href="{{ lien(c.id) }}">{{ c.label }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>{% endfor %}</dl>{% endif %}
+{% endblock %}

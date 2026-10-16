@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block titre %}{{ t.accueil }}{% endblock %}
+{% block contenu %}
+<section class="hero">
+  <h1>Trouvez un hébergement dans la région du Nord</h1>
+  <p>NordExplore recommande des hôtels et auberges selon vos contraintes et votre profil, et <strong>explique chaque proposition</strong> à partir de données liées (RDF/OWL).</p>
+  <p><a class="bouton" href="{{ url_for('preferences') }}">Indiquer mes préférences</a>
+     <a class="bouton secondaire" href="{{ url_for('carte') }}">Voir la carte</a></p>
+</section>
+<section>
+  <h2>{{ t.meilleurs }}</h2>
+  <p class="aide">Classés par note moyenne lissée (moyenne générale : {{ '%.2f'|format(mu) }}/5). {{ nb }} hébergements dans la base.</p>
+  <ol class="liste-top">
+    {% for h in top %}
+    <li><a href="{{ url_for('fiche', hid=h.id) }}">{{ h.label }}</a>
+        · {{ h.etoiles }}★ · {{ '%.2f'|format(h.moyenne) }}/5 ({{ h.nb_avis }} avis) · {{ repo.label(h.commune) }}</li>
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}

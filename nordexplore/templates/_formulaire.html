@@ -1,0 +1,49 @@
+<form class="formulaire" action="{{ url_for('resultats') }}" method="get">
+  <div class="grille">
+    <label>Commune
+      <select name="commune">
+        {% for c in communes %}<option value="{{ c.id }}" {% if c.id == q.commune %}selected{% endif %}>{{ c.label }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>Budget par nuit (FCFA)
+      <input type="number" name="budget" min="1000" max="5000000" step="1000" value="{{ q.budget|int }}" required>
+    </label>
+    <label>Nombre de personnes
+      <input type="number" name="personnes" min="1" max="12" value="{{ q.personnes }}" required>
+    </label>
+    <label>Étoiles minimales
+      <select name="etoiles">
+        {% for e in range(1, 6) %}<option value="{{ e }}" {% if e == q.etoiles_min %}selected{% endif %}>{{ e }}★</option>{% endfor %}
+      </select>
+    </label>
+    <label>Profil du voyageur
+      <select name="profil">
+        <option value="">Peu importe</option>
+        {% for p in profils %}<option value="{{ p.id }}" {% if p.id == q.profil %}selected{% endif %}>{{ p.label }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>Mode de paiement
+      <select name="paiement">
+        <option value="">Peu importe</option>
+        {% for m in modes %}<option value="{{ m.id }}" {% if m.id == q.paiement %}selected{% endif %}>{{ m.label }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>Proche de
+      <select name="repere">
+        <option value="">Aucun repère</option>
+        {% for r in reperes %}<option value="{{ r.id }}" {% if r.id == q.repere %}selected{% endif %}>{{ r.label }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="case"><input type="checkbox" name="pmr" value="1" {% if q.pmr %}checked{% endif %}> Accessible PMR</label>
+  </div>
+  <fieldset>
+    <legend>Équipements souhaités</legend>
+    <p class="aide">« Tous : … » désigne une catégorie : un restaurant, un bar ou un petit-déjeuner satisfont « Tous : Restauration ».</p>
+    <div class="cases">
+      {% for e in equipements %}
+      <label class="case"><input type="checkbox" name="equipements" value="{{ e.id }}" {% if e.id in q.equipements %}checked{% endif %}> {{ e.label }}</label>
+      {% endfor %}
+    </div>
+  </fieldset>
+  <button type="submit">{{ t.rechercher }}</button>
+</form>

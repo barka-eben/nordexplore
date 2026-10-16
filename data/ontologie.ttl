@@ -1,0 +1,106 @@
+@prefix ex:   <http://example.org/nord#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix geo:  <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+
+# ============================================================
+# NordExplore - Ontologie v2 (socle TD3 + extensions hôtellerie)
+# 24 classes : 16 du TD3 + 8 ajoutées (voir dossier de conception, section 4)
+# ============================================================
+
+<http://example.org/nord> a owl:Ontology ;
+    rdfs:label "Ontologie NordExplore"@fr ;
+    dct:description "Hébergements de la région du Nord (Cameroun) - recommandation sémantique."@fr .
+
+# --- Classes du TD3 -----------------------------------------
+ex:Lieu            a owl:Class ; rdfs:label "Lieu"@fr .
+ex:Hebergement     a owl:Class ; rdfs:subClassOf ex:Lieu ; rdfs:label "Hébergement"@fr .
+ex:Hotel           a owl:Class ; rdfs:subClassOf ex:Hebergement ; rdfs:label "Hôtel"@fr ;
+                   owl:disjointWith ex:Auberge .
+ex:Auberge         a owl:Class ; rdfs:subClassOf ex:Hebergement ; rdfs:label "Auberge"@fr .
+ex:SitePatrimonial a owl:Class ; rdfs:subClassOf ex:Lieu ; rdfs:label "Site patrimonial"@fr .
+ex:Territoire      a owl:Class ; rdfs:label "Territoire"@fr .
+ex:Commune         a owl:Class ; rdfs:subClassOf ex:Territoire ; rdfs:label "Commune"@fr .
+ex:Region          a owl:Class ; rdfs:subClassOf ex:Territoire ; rdfs:label "Région"@fr .
+ex:Organisation    a owl:Class ; rdfs:label "Organisation"@fr .
+ex:Societe         a owl:Class ; rdfs:subClassOf ex:Organisation ; rdfs:label "Société"@fr .
+ex:Cooperative     a owl:Class ; rdfs:subClassOf ex:Organisation ; rdfs:label "Coopérative"@fr .
+ex:Equipement      a owl:Class ; rdfs:label "Équipement"@fr .
+ex:VisiteGuidee    a owl:Class ; rdfs:label "Visite guidée"@fr .   # hors périmètre
+ex:Langue          a owl:Class ; rdfs:label "Langue"@fr .          # hors périmètre
+ex:Visiteur        a owl:Class ; rdfs:label "Visiteur"@fr .
+ex:Avis            a owl:Class ; rdfs:label "Avis"@fr .
+
+# --- Extensions hôtellerie (8 classes) ----------------------
+ex:Offre           a owl:Class ; rdfs:label "Offre"@fr ;
+                   rdfs:comment "Offre tarifaire d'un hébergement pour un type de chambre (relation n-aire)."@fr .
+ex:TypeChambre     a owl:Class ; rdfs:label "Type de chambre"@fr .
+ex:EquipementRestauration  a owl:Class ; rdfs:subClassOf ex:Equipement ; rdfs:label "Restauration"@fr .
+ex:EquipementConfort       a owl:Class ; rdfs:subClassOf ex:Equipement ; rdfs:label "Confort"@fr .
+ex:EquipementConnectivite  a owl:Class ; rdfs:subClassOf ex:Equipement ; rdfs:label "Connectivité"@fr .
+ex:ProfilVoyageur  a owl:Class ; rdfs:label "Profil de voyageur"@fr .
+ex:ModePaiement    a owl:Class ; rdfs:label "Mode de paiement"@fr .
+ex:Media           a owl:Class ; rdfs:label "Média"@fr .
+
+# --- Propriétés d'objet -------------------------------------
+ex:situeDans   a owl:ObjectProperty ; rdfs:domain ex:Lieu ; rdfs:range ex:Commune ; rdfs:label "situé dans"@fr .
+ex:partieDe    a owl:ObjectProperty ; rdfs:domain ex:Commune ; rdfs:range ex:Region ; rdfs:label "partie de"@fr .
+ex:exploitePar a owl:ObjectProperty ; rdfs:domain ex:Hebergement ; rdfs:range ex:Organisation ; rdfs:label "exploité par"@fr .
+ex:exploite    a owl:ObjectProperty ; owl:inverseOf ex:exploitePar ; rdfs:label "exploite"@fr .
+ex:proposeEquipement a owl:ObjectProperty ; rdfs:domain ex:Hebergement ; rdfs:range ex:Equipement ; rdfs:label "propose l'équipement"@fr .
+ex:proposeVisite a owl:ObjectProperty ; rdfs:domain ex:SitePatrimonial ; rdfs:range ex:VisiteGuidee .
+ex:langueVisite  a owl:ObjectProperty ; rdfs:domain ex:VisiteGuidee ; rdfs:range ex:Langue .
+ex:concerne    a owl:ObjectProperty ; rdfs:domain ex:Avis ; rdfs:range ex:Lieu ; rdfs:label "concerne"@fr .
+ex:redigePar   a owl:ObjectProperty ; rdfs:domain ex:Avis ; rdfs:range ex:Visiteur ; rdfs:label "rédigé par"@fr .
+ex:aOffre      a owl:ObjectProperty ; rdfs:domain ex:Hebergement ; rdfs:range ex:Offre ; rdfs:label "a pour offre"@fr .
+ex:typeChambre a owl:ObjectProperty ; rdfs:domain ex:Offre ; rdfs:range ex:TypeChambre ; rdfs:label "type de chambre"@fr .
+ex:convientA   a owl:ObjectProperty ; rdfs:domain ex:Hebergement ; rdfs:range ex:ProfilVoyageur ; rdfs:label "convient à"@fr .
+ex:accepteMode a owl:ObjectProperty ; rdfs:domain ex:Hebergement ; rdfs:range ex:ModePaiement ; rdfs:label "accepte le mode de paiement"@fr .
+ex:illustre    a owl:ObjectProperty ; rdfs:domain ex:Media ; rdfs:range ex:Hebergement .
+
+# --- Propriétés de données ----------------------------------
+ex:nombreEtoiles  a owl:DatatypeProperty , owl:FunctionalProperty ; rdfs:domain ex:Hebergement ; rdfs:range xsd:integer .
+ex:nombreChambres a owl:DatatypeProperty ; rdfs:domain ex:Hebergement ; rdfs:range xsd:integer .
+ex:anneeOuverture a owl:DatatypeProperty ; rdfs:domain ex:Hebergement ; rdfs:range xsd:gYear .
+ex:anneeClassement a owl:DatatypeProperty ; rdfs:domain ex:SitePatrimonial ; rdfs:range xsd:gYear .
+ex:note        a owl:DatatypeProperty ; rdfs:domain ex:Avis ; rdfs:range xsd:integer .
+ex:dateAvis    a owl:DatatypeProperty ; rdfs:domain ex:Avis ; rdfs:range xsd:date .
+ex:commentaire a owl:DatatypeProperty ; rdfs:domain ex:Avis ; rdfs:range rdf:langString .
+ex:tarifNuit   a owl:DatatypeProperty , owl:FunctionalProperty ; rdfs:domain ex:Offre ; rdfs:range xsd:decimal ;
+               rdfs:comment "Prix par nuit en FCFA."@fr .
+ex:capacite    a owl:DatatypeProperty , owl:FunctionalProperty ; rdfs:domain ex:Offre ; rdfs:range xsd:integer .
+ex:noteProprete  a owl:DatatypeProperty ; rdfs:domain ex:Avis ; rdfs:range xsd:integer .
+ex:noteAccueil   a owl:DatatypeProperty ; rdfs:domain ex:Avis ; rdfs:range xsd:integer .
+ex:noteRapportQualitePrix a owl:DatatypeProperty ; rdfs:domain ex:Avis ; rdfs:range xsd:integer .
+ex:accessiblePMR a owl:DatatypeProperty ; rdfs:domain ex:Hebergement ; rdfs:range xsd:boolean .
+ex:urlMedia    a owl:DatatypeProperty ; rdfs:domain ex:Media ; rdfs:range xsd:anyURI .
+
+geo:lat  a owl:DatatypeProperty .
+geo:long a owl:DatatypeProperty .
+
+# --- Individus de référence (vocabulaires contrôlés) --------
+ex:ChambreSimple    a ex:TypeChambre ; rdfs:label "Chambre simple"@fr , "Single room"@en .
+ex:ChambreDouble    a ex:TypeChambre ; rdfs:label "Chambre double"@fr , "Double room"@en .
+ex:ChambreFamiliale a ex:TypeChambre ; rdfs:label "Chambre familiale"@fr , "Family room"@en .
+ex:Suite            a ex:TypeChambre ; rdfs:label "Suite"@fr , "Suite"@en .
+
+ex:VoyageurAffaires a ex:ProfilVoyageur ; rdfs:label "Affaires"@fr , "Business"@en .
+ex:VoyageurFamille  a ex:ProfilVoyageur ; rdfs:label "Famille"@fr , "Family"@en .
+ex:VoyageurBudget   a ex:ProfilVoyageur ; rdfs:label "Petit budget"@fr , "Budget"@en .
+ex:VoyageurCouple   a ex:ProfilVoyageur ; rdfs:label "Couple"@fr , "Couple"@en .
+
+ex:Especes      a ex:ModePaiement ; rdfs:label "Espèces"@fr , "Cash"@en .
+ex:MobileMoney  a ex:ModePaiement ; rdfs:label "Mobile Money"@fr , "Mobile Money"@en .
+ex:CarteBancaire a ex:ModePaiement ; rdfs:label "Carte bancaire"@fr , "Bank card"@en .
+
+ex:Restaurant      a ex:EquipementRestauration ; rdfs:label "Restaurant"@fr , "Restaurant"@en .
+ex:Bar             a ex:EquipementRestauration ; rdfs:label "Bar"@fr , "Bar"@en .
+ex:PetitDejeuner   a ex:EquipementRestauration ; rdfs:label "Petit-déjeuner"@fr , "Breakfast"@en .
+ex:Climatisation   a ex:EquipementConfort ; rdfs:label "Climatisation"@fr , "Air conditioning"@en .
+ex:Piscine         a ex:EquipementConfort ; rdfs:label "Piscine"@fr , "Swimming pool"@en .
+ex:Parking         a ex:EquipementConfort ; rdfs:label "Parking"@fr , "Parking"@en .
+ex:Groupe          a ex:EquipementConfort ; rdfs:label "Groupe électrogène"@fr , "Backup generator"@en .
+ex:Wifi            a ex:EquipementConnectivite ; rdfs:label "Wifi"@fr , "Wifi"@en .

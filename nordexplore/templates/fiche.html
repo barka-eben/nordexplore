@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block titre %}{{ h.label }}{% endblock %}
+{% block head %}<script type="application/ld+json">{{ jsonld|tojson }}</script>{% endblock %}
+{% block contenu %}
+<article>
+  {% for m in media[:1] %}<img class="photo" src="{{ m.url }}" alt="{{ m.alt }}" width="640" height="240">{% endfor %}
+  <h1>{{ h.label }}</h1>
+  <p class="meta">{{ repo.label(h.classe, lang) }} · {{ h.etoiles }}★ ·
+    <a href="{{ url_for('ressource', rid=h.commune) }}">{{ repo.label(h.commune, lang) }}</a>
+    {% if h.chambres %}· {{ h.chambres }} chambres{% endif %}
+    {% if h.exploitant %}· exploité par <a href="{{ url_for('ressource', rid=h.exploitant.id) }}">{{ h.exploitant.label }}</a>{% endif %}
+    {% if h.pmr %}· accessible PMR{% endif %}</p>
+  {% if h.nb_avis %}<p class="note-globale"><strong>{{ '%.2f'|format(h.moyenne) }}/5</strong> sur {{ h.nb_avis }} avis
+    {% if moyennes.proprete %}· propreté {{ moyennes.proprete }} · accueil {{ moyennes.accueil }} · rapport qualité-prix {{ moyennes.rqp }}{% endif %}</p>
+  {% else %}<p>Aucun avis pour le moment.</p>{% endif %}
+
+  <h2>Offres</h2>
+  <table>
+    <thead><tr><th>Type de chambre</th><th>Capacité</th><th>Tarif / nuit</th></tr></thead>
+    <tbody>{% for o in offres %}<tr><td>{{ o.type_label }}</td><td>{{ o.capacite }} pers.</td><td>{{ '{:,}'.format(o.tarif|int).replace(',', ' ') }} FCFA</td></tr>{% endfor %}</tbody>
+  </table>
+  <p class="aide">{{ t.tarif_indicatif }}</p>
+
+  <h2>Équipements, paiement, profils</h2>
+  <ul>
+    <li><strong>Équipements :</strong> {% if eq %}{{ eq|map(attribute='label')|join(', ') }}{% else %}non renseignés{% endif %}</li>
+    <li><strong>Paiement :</strong> {{ pay|map(attribute='label')|join(', ') }}</li>
+    <li><strong>Convient à :</strong> {% if prof %}{{ prof|map(attribute='label')|join(', ') }}{% else %}non précisé{% endif %}</li>
+  </ul>
+
+  <h2>Avis</h2>
+  {% for a in avis %}
+  <blockquote><p>{{ a.commentaire }}</p>
+    <footer>{{ a.auteur }} · {{ a.date }} · {{ a.note }}/5</footer></blockquote>
+  {% else %}<p>Pas encore d'avis.</p>{% endfor %}
+
+  <h2>Navigation par liens typés</h2>
+  <p class="aide">Chaque propriété du graphe RDF devient un type de lien.</p>
+  <dl class="liens">
+    {% for prop, cibles in liens.sortants.items() %}
+      <dt>{{ prop }}</dt>
+      <dd>{% for c in cibles %}<a href="{{ lien(c.id) }}">{{ c.label }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+    {% endfor %}
+    {% for prop, cibles in liens.entrants.items() %}
+      <dt>← {{ prop }}</dt>
+      <dd>{{ cibles|length }} ressource(s)</dd>
+    {% endfor %}
+  </dl>
+
+  {% if proches %}
+  <h2>Hébergements proches</h2>
+  <ul>{% for p in proches %}<li><a href="{{ url_for('fiche', hid=p.id) }}">{{ p.label }}</a> ({{ '%.1f'|format(p._d) }} km)</li>{% endfor %}</ul>
+  {% endif %}
+
+  <p class="exports">Exporter : <a href="{{ url_for('export_ttl', hid=h.id) }}">Turtle</a> ·
+    <a href="{{ url_for('export_jsonld', hid=h.id) }}">JSON-LD</a></p>
+</article>
+{% endblock %}

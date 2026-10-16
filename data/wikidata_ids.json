@@ -1,0 +1,8 @@
+{
+  "_aide": "Renseignez l'identifiant Wikidata (ex. Q12345) de chaque territoire après vérification sur wikidata.org, puis lancez : python scripts/lier_wikidata.py",
+  "Nord": null,
+  "Garoua": null,
+  "Guider": null,
+  "Lagdo": null,
+  "Pitoa": null
+}

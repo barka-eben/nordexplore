@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block titre %}Comparaison{% endblock %}
+{% block contenu %}
+<h1>Comparaison</h1>
+{% if erreur %}
+<p>Sélectionnez 2 ou 3 hébergements depuis la page de résultats pour les comparer.</p>
+<p><a class="bouton" href="{{ url_for('preferences') }}">Faire une recherche</a></p>
+{% else %}
+<div class="defile">
+<table class="comparaison">
+  <thead><tr><th scope="col">Critère</th>{% for h in hs %}<th scope="col"><a href="{{ url_for('fiche', hid=h.id) }}">{{ h.label }}</a></th>{% endfor %}</tr></thead>
+  <tbody>
+    <tr><th scope="row">Type</th>{% for h in hs %}<td>{{ repo.label(h.classe, lang) }}</td>{% endfor %}</tr>
+    <tr><th scope="row">Étoiles</th>{% for h in hs %}<td>{{ h.etoiles }}★</td>{% endfor %}</tr>
+    <tr><th scope="row">Commune</th>{% for h in hs %}<td>{{ repo.label(h.commune, lang) }}</td>{% endfor %}</tr>
+    <tr><th scope="row">Chambres</th>{% for h in hs %}<td>{{ h.chambres or '—' }}</td>{% endfor %}</tr>
+    <tr><th scope="row">Tarif le plus bas</th>{% for h in hs %}<td>{{ '{:,}'.format((h.offres|map(attribute='tarif')|min)|int).replace(',', ' ') }} FCFA</td>{% endfor %}</tr>
+    <tr><th scope="row">Capacité maximale</th>{% for h in hs %}<td>{{ h.offres|map(attribute='capacite')|max }} pers.</td>{% endfor %}</tr>
+    <tr><th scope="row">Note moyenne</th>{% for h in hs %}<td>{% if h.nb_avis %}{{ '%.2f'|format(h.moyenne) }}/5 ({{ h.nb_avis }} avis){% else %}—{% endif %}</td>{% endfor %}</tr>
+    <tr><th scope="row">Équipements</th>{% for h in hs %}<td>{% for e in h.equipements %}{{ repo.label(e, lang) }}{% if not loop.last %}, {% endif %}{% else %}—{% endfor %}</td>{% endfor %}</tr>
+    <tr><th scope="row">Paiement</th>{% for h in hs %}<td>{% for p in h.paiements %}{{ repo.label(p, lang) }}{% if not loop.last %}, {% endif %}{% endfor %}</td>{% endfor %}</tr>
+    <tr><th scope="row">Convient à</th>{% for h in hs %}<td>{% for p in h.profils|sort %}{{ repo.label(p, lang) }}{% if not loop.last %}, {% endif %}{% else %}—{% endfor %}</td>{% endfor %}</tr>
+    <tr><th scope="row">Accessible PMR</th>{% for h in hs %}<td>{{ 'oui' if h.pmr else 'non' }}</td>{% endfor %}</tr>
+  </tbody>
+</table>
+</div>
+{% endif %}
+{% endblock %}

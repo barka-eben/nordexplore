@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titre %}{{ t.donnees }}{% endblock %}
+{% block contenu %}
+<h1>{{ t.donnees }}</h1>
+<p>Le graphe chargé compte <strong>{{ nb_triplets }}</strong> triplets (après application de la règle R4). Les données d'hébergements sont <strong>illustratives</strong> tant que la collecte terrain n'a pas remplacé le jeu fourni.</p>
+<h2>Téléchargements</h2>
+<ul>{% for f in fichiers %}<li><a href="{{ url_for('telecharger', nom=f) }}">{{ f }}</a></li>{% endfor %}</ul>
+<p>Chaque fiche propose aussi un export Turtle et JSON-LD. Un point d'accès en lecture seule est disponible : <a href="{{ url_for('sparql') }}">/sparql</a> (SELECT, ASK, CONSTRUCT ; SERVICE interdit).</p>
+<h2>Exemples SPARQL</h2>
+{% for d in demos %}
+<h3>{{ d.titre }}</h3>
+<pre><code>{{ d.texte }}</code></pre>
+{% endfor %}
+{% endblock %}

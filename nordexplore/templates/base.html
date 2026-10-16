@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titre %}NordExplore{% endblock %} · NordExplore</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+  <header class="entete">
+    <a class="logo" href="{{ url_for('accueil') }}">Nord<span>Explore</span></a>
+    <nav aria-label="Navigation principale">
+      <a href="{{ url_for('accueil') }}">{{ t.accueil }}</a>
+      <a href="{{ url_for('preferences') }}">{{ t.preferences }}</a>
+      <a href="{{ url_for('carte') }}">{{ t.carte }}</a>
+      <a href="{{ url_for('donnees') }}">{{ t.donnees }}</a>
+      <a href="{{ url_for('evaluation') }}">{{ t.evaluation }}</a>
+    </nav>
+    <span class="langue" aria-label="Langue">
+      <a href="{{ url_for('changer_langue', code='fr') }}" {% if lang == 'fr' %}aria-current="true"{% endif %}>FR</a> ·
+      <a href="{{ url_for('changer_langue', code='en') }}" {% if lang == 'en' %}aria-current="true"{% endif %}>EN</a>
+    </span>
+  </header>
+  <main id="contenu">
+    {% block contenu %}{% endblock %}
+  </main>
+  <footer class="pied">
+    <p>NordExplore · IBAI, Université de Garoua · M1 Art et IA · UE Hypermédia et Web sémantique.</p>
+  </footer>
+</body>
+</html>

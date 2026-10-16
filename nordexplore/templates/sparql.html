@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block titre %}SPARQL{% endblock %}
+{% block contenu %}
+<h1>Point d'accès SPARQL (lecture seule)</h1>
+<form action="{{ url_for('sparql') }}" method="post">
+  <label>Requête (SELECT, ASK, CONSTRUCT)
+    <textarea name="query" rows="14" spellcheck="false">{{ exemple }}</textarea>
+  </label>
+  <button type="submit">Exécuter</button>
+</form>
+<p class="aide">La réponse est au format SPARQL JSON (SELECT, ASK) ou Turtle (CONSTRUCT). Les clauses SERVICE sont refusées.</p>
+{% endblock %}

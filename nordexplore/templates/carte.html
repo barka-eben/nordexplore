@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block titre %}{{ t.carte }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+{% endblock %}
+{% block contenu %}
+<h1>{{ t.carte }}</h1>
+<p class="aide">Mêmes critères que la recherche : ajustez-les puis relancez. La carte utilise Leaflet et OpenStreetMap (connexion nécessaire pour les fonds de carte) ; la liste ci-dessous fonctionne hors ligne.</p>
+<details class="modifier" open><summary>Critères</summary>{% include "_formulaire.html" %}</details>
+<div id="carte" role="application" aria-label="Carte des hébergements" data-url="{{ url_for('api_resultats', **args.to_dict(flat=False)) }}"></div>
+<h2>Liste</h2>
+<ol id="liste-carte"></ol>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{{ url_for('static', filename='carte.js') }}"></script>
+{% endblock %}

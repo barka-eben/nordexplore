@@ -1,0 +1,14 @@
+{
+  "poids": {
+    "avis": 30,
+    "equipements": 25,
+    "profil": 15,
+    "prix": 15,
+    "proximite": 10,
+    "paiement": 5
+  },
+  "lissage_k": 3,
+  "rayon_proximite_km": 5,
+  "assouplissement_budget": 0.2,
+  "activer_owlrl": false
+}

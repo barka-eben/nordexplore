@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titre %}{{ t.evaluation }}{% endblock %}
+{% block contenu %}
+<h1>{{ t.evaluation }} du moteur</h1>
+<p>Cinq scénarios dont le résultat attendu a été fixé à la main avant les tests, comparés à un simple tri par nombre d'étoiles (mêmes hébergements éligibles).</p>
+<div class="defile">
+<table>
+  <thead><tr><th>Scénario</th><th>Attendu</th><th>Moteur</th><th>Tri par étoiles</th><th>Concordance moteur</th></tr></thead>
+  <tbody>
+  {% for l in ev.lignes %}
+    <tr><td>{{ l.scenario }}</td><td>{{ l.attendu or 'aucun résultat' }}</td><td>{{ l.moteur or 'aucun résultat' }}</td>
+        <td>{{ l.tri_etoiles or 'aucun résultat' }}</td><td>{{ 'oui' if l.ok else 'non' }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+<ul>
+  <li>Concordance du premier résultat, moteur : <strong>{{ ev.concordance_moteur }}</strong></li>
+  <li>Concordance du premier résultat, tri par étoiles : <strong>{{ ev.concordance_tri_etoiles }}</strong></li>
+  <li>Part des résultats expliqués : <strong>{{ '%.0f'|format(ev.part_expliquee) }} %</strong></li>
+</ul>
+<h2>Pondérations utilisées</h2>
+<p>{% for k, v in poids.items() %}{{ k }} : {{ v }}{% if not loop.last %} · {% endif %}{% endfor %}. Modifiables dans <code>nordexplore/config.json</code>.</p>
+{% endblock %}

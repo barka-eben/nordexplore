@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block titre %}Résultats{% endblock %}
+{% set noms = {'avis': 'Avis', 'equipements': 'Équipements', 'profil': 'Profil', 'prix': 'Prix',
+               'proximite': 'Proximité', 'paiement': 'Paiement / PMR'} %}
+{% block contenu %}
+<h1>Résultats pour {{ repo.label(q.commune) }}</h1>
+<p class="resume">{{ q.personnes }} personne(s) · budget {{ '{:,}'.format(q.budget|int).replace(',', ' ') }} FCFA/nuit · {{ q.etoiles_min }}★ minimum
+  {% if q.profil %}· profil {{ repo.label(q.profil, lang) }}{% endif %}
+  {% if q.paiement %}· paiement {{ repo.label(q.paiement, lang) }}{% endif %}
+  {% if q.pmr %}· accessible PMR{% endif %}
+  {% if q.repere %}· proche de {{ repo.label(q.repere, lang) }}{% endif %}
+  <a href="{{ url_for('carte', **args.to_dict(flat=False)) }}">Voir sur la carte</a></p>
+
+<details class="modifier"><summary>Modifier la recherche</summary>{% include "_formulaire.html" %}</details>
+
+{% if r.resultats %}
+<form action="{{ url_for('comparer') }}" method="get">
+<ol class="resultats">
+  {% for x in r.resultats %}
+  {% set h = x.hebergement %}
+  <li class="carte-heb">
+    <div class="tete">
+      <span class="rang">{{ x.rang }}</span>
+      <h2><a href="{{ url_for('fiche', hid=h.id) }}">{{ h.label }}</a></h2>
+      <span class="score" title="Score sur 100">{{ x.score }}<small>/100</small></span>
+    </div>
+    <p class="meta">{{ repo.label(h.classe, lang) }} · {{ h.etoiles }}★ · à partir de {{ '{:,}'.format(x.offre.tarif|int).replace(',', ' ') }} FCFA ({{ x.offre.type_label.lower() }})</p>
+    <div class="barre" role="img" aria-label="Score {{ x.score }} sur 100"><span style="width: {{ x.score }}%"></span></div>
+    <p class="explication"><strong>Pourquoi ?</strong> {{ x.explication }}</p>
+    <details><summary>Détail du calcul</summary>
+      <table class="mini">
+        <thead><tr><th>Critère</th><th>Poids</th><th>Sous-score</th></tr></thead>
+        <tbody>
+        {% for c in criteres %}
+          <tr>{% if x.sous_scores[c] is not none %}
+            <td>{{ noms[c] }}</td><td>{{ poids[c] }}</td><td>{{ '%.1f'|format(x.sous_scores[c]) }}</td>
+          {% else %}<td class="inactif">{{ noms[c] }}</td><td class="inactif">{{ poids[c] }}</td><td class="inactif">non demandé</td>{% endif %}</tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </details>
+    <label class="case"><input type="checkbox" name="ids" value="{{ h.id }}"> Comparer</label>
+  </li>
+  {% endfor %}
+</ol>
+<p><button type="submit">{{ t.comparer }} (2 à 3)</button></p>
+</form>
+{% else %}
+<div class="vide">
+  <h2>Aucun hébergement ne correspond</h2>
+  {% if alternatives %}
+  <p>Vous pouvez assouplir une contrainte :</p>
+  <ul>
+    {% for a in alternatives %}
+    <li>{{ a.libelle[0]|upper }}{{ a.libelle[1:] }} : {{ a.nb }} résultat(s).
+      <a href="{{ url_for('resultats', commune=a.requete.commune, budget=a.requete.budget|int, personnes=a.requete.personnes, etoiles=a.requete.etoiles_min, profil=a.requete.profil, paiement=a.requete.paiement, repere=a.requete.repere, pmr=('1' if a.requete.pmr else None), equipements=a.requete.equipements) }}">Essayer</a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>Même avec un budget majoré de 20 % ou une étoile de moins, aucun résultat. Essayez de réduire le nombre de personnes ou de changer de commune.</p>
+  {% endif %}
+</div>
+{% endif %}
+
+{% if r.ecartes %}
+<section>
+  <h2>{{ t.ecartes }} ({{ r.ecartes|length }})</h2>
+  <ul class="ecartes">
+    {% for e in r.ecartes %}
+    <li><a href="{{ url_for('fiche', hid=e.hebergement.id) }}">{{ e.hebergement.label }}</a> : {{ e.motifs|join(' ; ') }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endblock %}

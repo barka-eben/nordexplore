@@ -1,0 +1,6 @@
+Flask>=3.0
+rdflib>=7.0
+# Facultatif : raisonnement OWL-RL (activer "activer_owlrl" dans nordexplore/config.json)
+# owlrl>=7.1
+# Serveur WSGI pour le déploiement en production
+gunicorn>=23.0.0
